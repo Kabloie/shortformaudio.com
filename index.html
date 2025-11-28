@@ -149,7 +149,7 @@
             text-align: left;
             margin-top: 20px;
             padding-top: 20px;
-            border-top: 1px solid #ebebeb;
+          /*   border-top: 1px solid #ebebeb; */
         }
         
         .link a {
@@ -196,7 +196,7 @@
             <div class="meaning-group">
                 <div class="meaning">1. Short-form audio content; a brief digital audio segment.</div>
                 <div class="example">"Did you hear that new kabloie?"</div>
-´                <div class="example">"Her latest kabloie went viral within minutes."</div>
+                <div class="example">"Her latest kabloie went viral within minutes."</div>
             </div>
         </div>
         
@@ -220,15 +220,20 @@
     </div>
 
     <script>
+        const audio = new Audio('audio/kabloiesound.mp3');
+    
         function playAudio() {
             const btn = document.querySelector('.audio-btn');
             
+            // Visual feedback
             btn.style.backgroundColor = '#d2d4d8';
             setTimeout(() => {
                 btn.style.backgroundColor = '';
             }, 200);
             
-            console.log("Audio pronunciation triggered");
+            // Restart audio from beginning immediately
+            audio.currentTime = 0;
+            audio.play().catch(e => console.log("Audio playback error:", e));
         }
     </script>
 </body>
