@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <!-- Basic Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kabloie - Definition</title>
+    <meta name="theme-color" content="white" />
+    <title>Short Form Audio - Definition</title>
+
+    <!-- Favicon and Apple Touch Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="images/favicon/site.webmanifest">
+    
     <style>
         * {
             margin: 0;
@@ -12,7 +22,7 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -23,101 +33,203 @@
         
         .container {
             max-width: 650px;
+            width: 100%;
             padding: 40px;
         }
         
+        .header-group {
+            margin-bottom: 40px;
+        }
+
         .word {
             font-size: 52px;
-            font-weight: 600;
+            font-weight: 700;
             color: #000000;
-            margin-bottom: 4px;
+            margin-bottom: 8px;
             letter-spacing: -0.5px;
+            line-height: 1;
         }
         
+        .phonetic-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px; /* Added spacing for the new summary definition */
+        }
+
         .phonetic {
             font-size: 18px;
-            color: #999;
-            margin-bottom: 50px;
+            color: #5f6368;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        /* Primary/Overarching Definition */
+        .summary-definition {
+            font-size: 20px;
+            color: #202124;
+            font-weight: 400;
+        }
+
+        /* Speaker Icon Styling */
+        .audio-btn {
+            background-color: #f1f3f4; /* Very light grey */
+            border: none;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s;
+            color: #202124; /* Black */
+        }
+
+        .audio-btn:hover {
+            background-color: #e3e5e8; /* Slightly darker */
+        }
+
+        .audio-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
         }
         
-        .definition {
+        .definition-block {
             margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #f1f3f4;
         }
         
-        .definition:first-of-type {
-            margin-bottom: 45px;
+        .definition-block:last-of-type {
+            border-bottom: none;
         }
-        
-        .definition:first-of-type .meaning {
-            font-size: 19px;
-            font-weight: 500;
+
+        .part-of-speech-header {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 15px;
+            gap: 10px;
         }
         
         .part-of-speech {
-            font-size: 13px;
+            font-size: 14px;
+            font-weight: 700;
             font-style: italic;
-            color: #999;
-            margin-bottom: 10px;
+            color: #000;
+        }
+
+        .forms {
+            font-size: 13px;
+            color: #70757a;
+        }
+
+        .meaning-group {
+            margin-bottom: 20px;
         }
         
         .meaning {
-            font-size: 17px;
+            font-size: 16px;
             line-height: 1.5;
-            color: #000;
-            margin-bottom: 12px;
+            color: #202124;
+            font-weight: 500; 
+            margin-bottom: 8px;
         }
         
         .example {
             font-size: 15px;
-            color: #666;
+            color: #5f6368;
             font-style: italic;
-            padding-left: 20px;
-            border-left: 2px solid #e8e8e8;
+            padding-left: 12px;
+            margin-bottom: 6px;
+            border-left: 2px solid #dadce0;
         }
         
         .link {
-            text-align: center;
-            margin-top: 60px;
+            text-align: left;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #ebebeb;
         }
         
         .link a {
-            color: #000;
+            color: #70757a;
             text-decoration: none;
-            font-size: 14px;
-            border-bottom: 1px solid #000;
-            padding-bottom: 2px;
-            transition: opacity 0.3s;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
         }
         
         .link a:hover {
-            opacity: 0.6;
+            color: #1a73e8;
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="word">Kabloie</div>
-        <div class="phonetic">/kɑːˈbluːi/</div>
         
-        <div class="definition">
-            <div class="meaning">Short-form audio.</div>
+        <div class="header-group">
+            <div class="word">Kabloie</div>
+            
+            <div class="phonetic-wrapper">
+                <span class="phonetic">/kɑːˈbluːi/</span>
+                <button class="audio-btn" aria-label="Listen to pronunciation" onclick="playAudio()">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Overarching Definition -->
+            <div class="summary-definition">Short-form audio.</div>
         </div>
         
-        <div class="definition">
-            <div class="part-of-speech">noun</div>
-            <div class="meaning">Short-form audio content designed for quick, engaging listening experiences.</div>
-            <div class="example">"I listened to a few kabloies on my morning walk."</div>
+        <!-- Noun Section -->
+        <div class="definition-block">
+            <div class="part-of-speech-header">
+                <span class="part-of-speech">noun</span>
+                <span class="forms">plural: <strong>kabloies</strong></span>
+            </div>
+            
+            <div class="meaning-group">
+                <div class="meaning">1. Short-form audio content; a brief digital audio segment.</div>
+                <div class="example">"Did you hear that new kabloie?"</div>
+´                <div class="example">"Her latest kabloie went viral within minutes."</div>
+            </div>
         </div>
         
-        <div class="definition">
-            <div class="part-of-speech">verb</div>
-            <div class="meaning">To create or share brief audio clips; to communicate through short-form audio.</div>
-            <div class="example">"She kabloied her thoughts about the conference."</div>
+        <!-- Verb Section -->
+        <div class="definition-block">
+            <div class="part-of-speech-header">
+                <span class="part-of-speech">verb</span>
+                <span class="forms">past tense: <strong>kabloied</strong>; present participle: <strong>kabloying</strong></span>
+            </div>
+
+            <div class="meaning-group">
+                <div class="meaning">1. To record, publish, or communicate via short-form audio.</div>
+                <div class="example">"Just kabloie me the details later."</div>
+                <div class="example">"I was too tired to type, so I just kabloied my reply."</div>
+            </div>
         </div>
         
         <div class="link">
-            <a href="https://kabloie.com">read more at kabloie.com</a>
+            <a href="https://kabloie.com" target="_blank">Origin & More at Kabloie.com &rarr;</a>
         </div>
     </div>
+
+    <script>
+        function playAudio() {
+            const btn = document.querySelector('.audio-btn');
+            
+            btn.style.backgroundColor = '#d2d4d8';
+            setTimeout(() => {
+                btn.style.backgroundColor = '';
+            }, 200);
+            
+            console.log("Audio pronunciation triggered");
+        }
+    </script>
 </body>
 </html>
